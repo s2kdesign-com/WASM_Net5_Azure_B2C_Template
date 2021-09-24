@@ -21,25 +21,16 @@ jobs:
 
     # publishes Blazor project to the release-folder
     - name: Publish .NET Core Project
-      run: dotnet publish src/LandingPage/CoinGardenWorld.LandingPage.csproj -c Release -o release --nologo
+      run: dotnet publish src/LandingPage/S2kDesignTemplate.LandingPage.csproj -c Release -o release --nologo
     
     # changes the base-tag in index.html from '/' to 'CoinGarden-World' to match GitHub Pages repository subdirectory
-    - name: Change base-tag in index.html from / to CoinGarden-World
-      run: sed -i 's/<base href="\/" \/>/<base href="\/CoinGarden-World\/" \/>/g' release/wwwroot/index.html
+    - name: Change base-tag in index.html from / to WASM_Net5_Azure_B2C_Template
+      run: sed -i 's/<base href="\/" \/>/<base href="\/WASM_Net5_Azure_B2C_Template\/" \/>/g' release/wwwroot/index.html
 
     # copy index.html to 404.html to serve the same file when a file is not found
     - name: copy index.html to 404.html
       run: cp release/wwwroot/index.html release/wwwroot/404.html
-      
-    # Replace ClientID in configuration for Azure B2C
-    - uses: cschleiden/replace-tokens@v1
-      with:
-        tokenPrefix: ''
-        tokenSuffix: ''
-        files: '["**/*appsettings.json"]'
-      env:
-        Authority: ${{ secrets.COINGARDENWORLD_CLIENT_AZUREADB2C_AUTHORITY }}
-        
+              
     - name: Commit wwwroot to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@3.7.1
       with:
