@@ -3,9 +3,9 @@
 Start template with preconfigured infrastructure
 ![](docs/img/InfrastructureDiagram.drawio.png) 
 
-#### Nuget Packages:
-### Cors Policies in "S2kDesignTemplate.ApiEtensions"
-Cors Policies for APIs are configured  : 
+### Nuget Packages:
+#### Cors Policies in "S2kDesignTemplate.ApiEtensions"
+Cors Policies for APIs are configured in "startup.cs" file : 
 
 ```c# 
 public void ConfigureServices(IServiceCollection services){
