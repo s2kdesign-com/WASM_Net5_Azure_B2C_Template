@@ -5,7 +5,7 @@
     <UserSecretsId>aspnet-ServerAPI-5EDBC614-C715-449A-B72C-22FA28C43E86</UserSecretsId>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <Version >1.0.1.0</Version>
+    <Version>1.0.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ApiExtensions\S2kDesignTemplate.ApiExtensions.csproj" />
     <ProjectReference Include="..\Shared\S2kDesignTemplate.Shared.csproj" />
   </ItemGroup>
 

@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{3A1BC2E9-0
 		..\SUMMARY.md = ..\SUMMARY.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "S2kDesignTemplate.ApiExtensions", "ApiExtensions\S2kDesignTemplate.ApiExtensions.csproj", "{3393D3F3-9945-4C26-9839-5B0A1A32304D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -109,6 +111,18 @@ Global
 		{FD72A086-CCDD-425B-8280-7551AE04F2B3}.Release|x64.Build.0 = Release|Any CPU
 		{FD72A086-CCDD-425B-8280-7551AE04F2B3}.Release|x86.ActiveCfg = Release|Any CPU
 		{FD72A086-CCDD-425B-8280-7551AE04F2B3}.Release|x86.Build.0 = Release|Any CPU
+		{3393D3F3-9945-4C26-9839-5B0A1A32304D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3393D3F3-9945-4C26-9839-5B0A1A32304D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3393D3F3-9945-4C26-9839-5B0A1A32304D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3393D3F3-9945-4C26-9839-5B0A1A32304D}.Debug|x64.Build.0 = Debug|Any CPU
+		{3393D3F3-9945-4C26-9839-5B0A1A32304D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3393D3F3-9945-4C26-9839-5B0A1A32304D}.Debug|x86.Build.0 = Debug|Any CPU
+		{3393D3F3-9945-4C26-9839-5B0A1A32304D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3393D3F3-9945-4C26-9839-5B0A1A32304D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3393D3F3-9945-4C26-9839-5B0A1A32304D}.Release|x64.ActiveCfg = Release|Any CPU
+		{3393D3F3-9945-4C26-9839-5B0A1A32304D}.Release|x64.Build.0 = Release|Any CPU
+		{3393D3F3-9945-4C26-9839-5B0A1A32304D}.Release|x86.ActiveCfg = Release|Any CPU
+		{3393D3F3-9945-4C26-9839-5B0A1A32304D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

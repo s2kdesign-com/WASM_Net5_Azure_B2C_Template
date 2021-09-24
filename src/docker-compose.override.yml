@@ -17,7 +17,9 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - CorsPolicies__WebStatusDocker=http://s2kdesigntemplatewebstatus
+      - CorsPoliciesConfiguration__CorsPolicies__0__PolicyName=WebStatus
+      - CorsPoliciesConfiguration__CorsPolicies__0__Url=http://s2kdesigntemplatewebstatus
+      - CorsPoliciesConfiguration__CorsPolicies__0__Enabled=true
     ports:
       - 42254:80
       - 44363:443

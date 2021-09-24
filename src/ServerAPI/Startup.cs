@@ -11,14 +11,13 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 using Microsoft.OpenApi.Models;
+using S2kDesignTemplate.ApiExtensions.Extensions.CorsPolicies;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace S2kDesignTemplate.ServerAPI
 {
     public class Startup
     {
-        private static Dictionary<string, string> _corsPolicies = new();
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -83,20 +82,8 @@ namespace S2kDesignTemplate.ServerAPI
                 });
             });
 
-            _corsPolicies = Configuration.GetSection("CorsPolicies").Get<Dictionary<string, string>>();
-            services.AddCors(options =>
-            {
-                foreach (var corsPolicies in _corsPolicies)
-                {
-                    options.AddPolicy(corsPolicies.Key,
-                        builder => builder
-                            .AllowAnyMethod()
-                            .AllowAnyHeader()
-                            .SetIsOriginAllowed((host) => true)
-                            .WithOrigins(corsPolicies.Value)
-                            .AllowCredentials());
-                }
-            });
+            // Defined in S2kDesignTemplate.Extensions
+            services.AddCorsExtensions(Configuration.GetSection(nameof(CorsPoliciesConfiguration)).Get<CorsPoliciesConfiguration>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -120,10 +107,8 @@ namespace S2kDesignTemplate.ServerAPI
 
             app.UseRouting();
 
-            foreach (var corsPolicy in _corsPolicies)
-            {
-                app.UseCors(corsPolicy.Key);
-            }
+            // Defined in S2kDesignTemplate.Extensions
+            app.UseCorsExtensions();
 
             app.UseAuthentication();
             app.UseAuthorization();
