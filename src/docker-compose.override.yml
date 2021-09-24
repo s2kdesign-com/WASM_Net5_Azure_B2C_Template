@@ -1,0 +1,41 @@
+version: '3.4'
+
+services:
+  s2kdesigntemplateserver:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ServerApiUrlHC=http://s2kdesigntemplateserverapi/hc
+    ports:
+      - 30934:80
+      - 44314:443
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  s2kdesigntemplateserverapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - CorsPolicies__WebStatusDocker=http://s2kdesigntemplatewebstatus
+    ports:
+      - 42254:80
+      - 44363:443
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  s2kdesigntemplatewebstatus:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - HealthChecksUI__HealthChecks__0__Name=Server API HTTP Check
+      - HealthChecksUI__HealthChecks__0__Uri=http://s2kdesigntemplateserverapi/hc
+      - HealthChecksUI__HealthChecks__1__Name=Server HTTP Check
+      - HealthChecksUI__HealthChecks__1__Uri=http://s2kdesigntemplateserver/hc
+    ports:
+      - 43124:80
+      - 44364:443
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro

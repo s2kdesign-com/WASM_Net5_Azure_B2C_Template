@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "composeLaunchServiceName": "s2kdesigntemplateserver",
+      "serviceActions": {
+        "s2kdesigntemplateserverapi": "StartDebugging",
+        "s2kdesigntemplateserver": "StartDebugging",
+        "s2kdesigntemplatewebstatus": "StartDebugging"
+      },
+      "composeLaunchAction": "LaunchBrowser",
+      "commandVersion": "1.0",
+      "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}"
+    }
+  }
+}

@@ -1,0 +1,1 @@
+dotnet new S2KDesignTemplate --name Test --output ../test

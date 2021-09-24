@@ -1,0 +1,21 @@
+﻿@page
+@model S2kDesignTemplate.WebStatus.Pages.ConfigModel
+@{
+}
+
+@{
+    ViewData["Title"] = "WebStatus Configuration";
+    Layout = "";
+}
+
+<h1>Configuration Values</h1>
+
+<table>
+    @foreach (var item in Model.Configs)
+    {
+        <tr>
+            <td>@item.Key</td>
+            <td>@item.Value</td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  s2kdesigntemplateserver:
+    image: ${DOCKER_REGISTRY-}s2kdesigntemplate.server:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: Server/Dockerfile
+
+  s2kdesigntemplateserverapi:
+    image: ${DOCKER_REGISTRY-}s2kdesigntemplate.serverapi:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: ServerAPI/Dockerfile
+
+  s2kdesigntemplatewebstatus:
+    image: ${DOCKER_REGISTRY-}s2kdesigntemplate.webstatus:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: WebStatus/Dockerfile

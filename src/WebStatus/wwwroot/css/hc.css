@@ -1,0 +1,11 @@
+﻿:root {
+    --primaryColor: #008d0a;
+    --secondaryColor: #f4f4f4;
+    --bgMenuActive: #06b70a;
+    --bgButton: #008d0a;
+    --logoImageUrl: url('/img/hero-img.png');
+    --bgAside: var(--primaryColor);
+}
+.hc-aside__logo {
+    border-radius: 0%;
+}
