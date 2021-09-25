@@ -13,6 +13,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{BC3F718E-BD9E-4A7A-A05C-2D5B170194AE}"
 	ProjectSection(SolutionItems) = preProject
 		..\.github\workflows\gh-pages.yml = ..\.github\workflows\gh-pages.yml
+		..\.github\workflows\nuget-s2kdesigntemplate-extensions.yml = ..\.github\workflows\nuget-s2kdesigntemplate-extensions.yml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "S2kDesignTemplate.ServerAPI", "ServerAPI\S2kDesignTemplate.ServerAPI.csproj", "{81D1321B-54DB-4329-8F57-C580BCFB6218}"
@@ -27,7 +28,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{3A1BC2E9-0
 		..\SUMMARY.md = ..\SUMMARY.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "S2kDesignTemplate.ApiExtensions", "ApiExtensions\S2kDesignTemplate.ApiExtensions.csproj", "{3393D3F3-9945-4C26-9839-5B0A1A32304D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "S2kDesignTemplate.ApiExtensions", "ApiExtensions\S2kDesignTemplate.ApiExtensions.csproj", "{3393D3F3-9945-4C26-9839-5B0A1A32304D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,10 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <Version>1.0.0</Version>
+    <Version>1.0.0.1</Version>
     <Authors>Svetlin Krastanov</Authors>
     <Company>S2Kdesign</Company>
+    <Description>Nuget Package S2kDesignTemplate.ApiExtensions</Description>
+    <PackageTags>S2kDesignTemplate</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <RepositoryUrl>https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
