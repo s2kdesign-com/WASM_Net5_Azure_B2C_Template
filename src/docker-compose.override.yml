@@ -6,6 +6,9 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - ServerApiUrlHC=http://s2kdesigntemplateserverapi/hc
+      - HealthChecksConfiguration__UrlGroup__0__Name=server-api-check
+      - HealthChecksConfiguration__UrlGroup__0__Url=http://s2kdesigntemplateserverapi/hc
+      - HealthChecksConfiguration__UrlGroup__0__Tags=server-api
     ports:
       - 30934:80
       - 44314:443
@@ -19,7 +22,6 @@ services:
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - CorsPoliciesConfiguration__CorsPolicies__0__PolicyName=WebStatus
       - CorsPoliciesConfiguration__CorsPolicies__0__Url=http://s2kdesigntemplatewebstatus
-      - CorsPoliciesConfiguration__CorsPolicies__0__Enabled=true
     ports:
       - 42254:80
       - 44363:443

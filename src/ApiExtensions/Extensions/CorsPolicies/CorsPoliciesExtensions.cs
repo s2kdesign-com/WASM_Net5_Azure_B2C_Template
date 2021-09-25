@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace S2kDesignTemplate.ApiExtensions.Extensions.CorsPolicies
@@ -9,8 +10,10 @@ namespace S2kDesignTemplate.ApiExtensions.Extensions.CorsPolicies
     {
         private static CorsPoliciesConfiguration _cors = new();
 
-        public static void AddCorsExtensions(this IServiceCollection services, CorsPoliciesConfiguration configuration)
+        public static void AddCorsExtensions(this IServiceCollection services, IConfigurationSection configurationSection)
         {
+            var configuration = configurationSection.Get<CorsPoliciesConfiguration>();
+
             if (configuration != null && configuration.CorsPolicies.Any())
             {
                 _cors = configuration;
@@ -37,7 +40,6 @@ namespace S2kDesignTemplate.ApiExtensions.Extensions.CorsPolicies
             {
                 foreach (var corsPolicy in _cors.CorsPolicies)
                 {
-                    if (corsPolicy.Value.Enabled)
                         app.UseCors(corsPolicy.Value.PolicyName);
                 }
             }

@@ -11,7 +11,7 @@ Start the projects in this order with right click `"Set as startup"` :
 ```
 S2kDesignTemplate.WebStatus - http://localhost:5107/
 S2kDesignTemplate.ServerAPI - http://localhost:44363/
-S2kDesignTemplate.Server - http://localhost:44314 /
+S2kDesignTemplate.Server - http://localhost:44314/
 ```
 
 ##### Start with Command line
@@ -55,7 +55,7 @@ Start template with preconfigured infrastructure
 #### Cors Policies
 Nuget: `"S2kDesignTemplate.ApiEtensions"`
 
-Cors Policies for APIs are configured in "startup.cs" file : 
+Cors Policies for APIs are configured in `"startup.cs"` file : 
 
 ```c# 
 public void ConfigureServices(IServiceCollection services){
@@ -80,8 +80,8 @@ Add configuration to appsettings.json ->
   },
 ```
 ---
-#### Swagger UI for APIs in nuget: "S2kDesignTemplate.ApiEtensions"
+#### Swagger UI 
 
 Nuget: `"S2kDesignTemplate.ApiEtensions"`
 
-Swagger UI for APIs is configured in startup.cs file: 
+Swagger UI for APIs is configured in `"startup.cs"` file: 

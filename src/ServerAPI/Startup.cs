@@ -12,6 +12,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 using Microsoft.OpenApi.Models;
 using S2kDesignTemplate.ApiExtensions.Extensions.CorsPolicies;
+using S2kDesignTemplate.ApiExtensions.Extensions.HealthChecks;
+using S2kDesignTemplate.ApiExtensions.Extensions.Swagger;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace S2kDesignTemplate.ServerAPI
@@ -28,62 +30,17 @@ namespace S2kDesignTemplate.ServerAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var buildVersionDescription = "Build Version: " + GetType().Assembly.GetName().Version;
-            services.AddHealthChecks()
-                .AddCheck("self", () => HealthCheckResult.Healthy(buildVersionDescription));
+            services.AddHealthChecksExtensions(Configuration.GetSection(nameof(HealthChecksConfiguration)));
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAdB2C"));
-
-            #region AzureB2C Configuration
-
-            var azureAdB2CConfiguration = new MicrosoftIdentityOptions();
-            Configuration.GetSection("AzureAdB2C").Bind(azureAdB2CConfiguration);
             
-            var openApiOAuthFlow = new OpenApiOAuthFlow();
-            Configuration.GetSection(nameof(OpenApiOAuthFlow)).Bind(openApiOAuthFlow);
-
-            // TODO: Can not add url to Dictionary Key - result: key="https:", value=null
-            var orderedScopes = Configuration.GetSection(nameof(OpenApiOAuthFlow) + ":Scopes").GetChildren()
-                .ToDictionary(x => x.Value, x => x.Key);
-            openApiOAuthFlow.Scopes = orderedScopes;
-
-            #endregion
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Title = "ServerAPI", 
-                    Version = "v1",
-                    Description = buildVersionDescription
-                }); 
-                c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
-                {
-                    Type = SecuritySchemeType.OAuth2,  
-                    Flows = new OpenApiOAuthFlows()
-                    {
-                        Implicit = openApiOAuthFlow
-                    }
-                });
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement() {
-                    {
-                        new OpenApiSecurityScheme {
-                            Reference = new OpenApiReference {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "oauth2"
-                            },
-                            Scheme = "oauth2",
-                            Name = "oauth2",
-                            In = ParameterLocation.Header
-                        },
-                        new List < string > ()
-                    }
-                });
-            });
 
+            services.AddSwaggerExtensions(Configuration.GetSection(nameof(SwaggerConfiguration)));
+            
             // Defined in S2kDesignTemplate.Extensions
-            services.AddCorsExtensions(Configuration.GetSection(nameof(CorsPoliciesConfiguration)).Get<CorsPoliciesConfiguration>());
+            services.AddCorsExtensions(Configuration.GetSection(nameof(CorsPoliciesConfiguration)));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -92,18 +49,12 @@ namespace S2kDesignTemplate.ServerAPI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c =>
-                {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "ServerAPI v1");
-
-                    c.OAuthClientId(Configuration.GetValue<string>(nameof(SwaggerUIOptions) + ":OAuthClientId"));
-                    c.OAuthAppName(Configuration.GetValue<string>(nameof(SwaggerUIOptions) + ":OAuthAppName"));
-                    c.OAuthUseBasicAuthenticationWithAccessCodeGrant();
-                });
             }
 
             //app.UseHttpsRedirection();
+
+            // Defined in S2kDesignTemplate.Extensions
+            app.UseSwaggerExtensions(Configuration.GetSection(nameof(SwaggerUIOptions)));
 
             app.UseRouting();
 
@@ -115,16 +66,10 @@ namespace S2kDesignTemplate.ServerAPI
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHealthChecks("/hc", new HealthCheckOptions()
-                {
-                    Predicate = _ => true,
-                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
-                });
-                endpoints.MapHealthChecks("/liveness", new HealthCheckOptions
-                {
-                    Predicate = r => r.Name.Contains("self")
-                });
                 endpoints.MapControllers();
+
+                // Defined in S2kDesignTemplate.Extensions
+                endpoints.MapHealthChecksExtensions();
             });
         }
     }

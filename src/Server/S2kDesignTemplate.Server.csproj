@@ -5,19 +5,16 @@
     <UserSecretsId>S2kDesignTemplate.Server-5E06CD23-86D4-4158-BD66-2797C1D3529D</UserSecretsId>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <Version >1.0.1.0</Version>
+    <Version>1.0.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="5.0.1" />
-    <PackageReference Include="AspNetCore.HealthChecks.Uris" Version="5.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="5.0.9" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.HealthChecks" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="5.0.10" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.11.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ApiExtensions\S2kDesignTemplate.ApiExtensions.csproj" />
     <ProjectReference Include="..\LandingPage\S2kDesignTemplate.LandingPage.csproj" />
     <ProjectReference Include="..\Shared\S2kDesignTemplate.Shared.csproj" />
   </ItemGroup>

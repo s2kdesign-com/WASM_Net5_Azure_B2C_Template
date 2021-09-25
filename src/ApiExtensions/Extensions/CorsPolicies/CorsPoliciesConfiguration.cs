@@ -11,6 +11,5 @@ namespace S2kDesignTemplate.ApiExtensions.Extensions.CorsPolicies
     {
         public string PolicyName { get; set; }
         public string Url { get; set; }
-        public bool Enabled { get; set; }
     }
 }

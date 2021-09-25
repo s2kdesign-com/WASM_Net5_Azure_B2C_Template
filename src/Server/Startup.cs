@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
+using S2kDesignTemplate.ApiExtensions.Extensions.CorsPolicies;
+using S2kDesignTemplate.ApiExtensions.Extensions.HealthChecks;
 
 namespace S2kDesignTemplate.Server
 {
@@ -25,10 +27,7 @@ namespace S2kDesignTemplate.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHealthChecks()
-                .AddCheck("self", () => HealthCheckResult.Healthy("Build Version: " + GetType().Assembly.GetName().Version))
-                .AddUrlGroup(new Uri(Configuration["ServerApiUrlHC"]), name: "serverapi-check",
-                    tags: new string[] {"serverapi"});
+            services.AddHealthChecksExtensions(Configuration.GetSection(nameof(HealthChecksConfiguration)));
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAdB2C"));
@@ -67,15 +66,8 @@ namespace S2kDesignTemplate.Server
                 endpoints.MapControllers();
                 endpoints.MapFallbackToFile("index.html");
 
-                endpoints.MapHealthChecks("/hc", new HealthCheckOptions()
-                {
-                    Predicate = _ => true,
-                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
-                });
-                endpoints.MapHealthChecks("/liveness", new HealthCheckOptions
-                {
-                    Predicate = r => r.Name.Contains("self")
-                });
+                // Defined in S2kDesignTemplate.Extensions
+                endpoints.MapHealthChecksExtensions();
             });
         }
     }
