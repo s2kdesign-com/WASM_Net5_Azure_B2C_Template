@@ -2,6 +2,15 @@
 
 ## Getting Started
 
+
+| Image | Status | 
+| ------------- | ------------- | 
+| Blazor Web Client | [![Deploy to GitHub Pages](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/actions/workflows/gh-pages.yml) |
+
+| Nuget | Status | 
+| ------------- | ------------- | 
+| S2kDesignTemplate.ApiEtensions | [![Publish Nuget Package - S2kDesignTemplate.ApiExtensions](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/actions/workflows/nuget-s2kdesigntemplate-extensions.yml/badge.svg)](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/actions/workflows/nuget-s2kdesigntemplate-extensions.yml) |
+
 ##### Start with Visual Studio and [Docker](https://docs.docker.com/docker-for-windows/install/)
 Clone the project and open  `"src/S2kDesignTemplate.sln"`. 
 Right click on `"docker-compose"` and choose `"Set as startup"` then press F5.
@@ -53,9 +62,9 @@ Start template with preconfigured infrastructure
 
 ---
 #### Cors Policies
-Nuget: `"S2kDesignTemplate.ApiEtensions"`
+Nuget: "[S2kDesignTemplate.ApiEtensions](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/packages/1008690)"
 
-Cors Policies for APIs are configured in `"startup.cs"` file : 
+Cors Policies for APIs are configured in `startup.cs` file : 
 
 ```c# 
 public void ConfigureServices(IServiceCollection services){
@@ -70,7 +79,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env){
 }
 ```
 
-Add configuration to appsettings.json ->
+Add configuration to `appsettings.json` ->
 ```json
   "CorsPoliciesConfiguration": {
     "CorsPolicies": {
@@ -81,7 +90,76 @@ Add configuration to appsettings.json ->
 ```
 ---
 #### Swagger UI 
+Nuget: "[S2kDesignTemplate.ApiEtensions](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/packages/1008690)"
 
-Nuget: `"S2kDesignTemplate.ApiEtensions"`
+Swagger UI for APIs is configured in `startup.cs` file: 
+```c# 
+public void ConfigureServices(IServiceCollection services){
+    ...
+    services.AddControllers();
 
-Swagger UI for APIs is configured in `"startup.cs"` file: 
+    services.AddSwaggerExtensions(Configuration.GetSection("SwaggerConfiguration"));
+    ...
+}
+```
+```c#
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env){   
+    app.UseSwaggerExtensions(Configuration.GetSection("SwaggerUIOptions"));
+    ...
+
+}
+```
+Add configuration to `appsettings.json` ->
+```json
+  "SwaggerConfiguration": {
+    "Title" :  "Server API" ,
+    "OpenApiOAuthFlow": {
+      "AuthorizationUrl": "https://xxx.b2clogin.com/xxx.onmicrosoft.com/xxx/oauth2/v2.0/authorize",
+      "TokenUrl": "https://xxx.b2clogin.com/xxx.onmicrosoft.com/oauth2/v2.0/token",
+      "Scopes": {
+        "ServerAPI.Read": "https://xxx.onmicrosoft.com/xxx/xxx"
+      }
+    }
+  },
+  "SwaggerUIOptions": {
+    "OAuthConfigObject": {
+      "ClientId": "xxx",
+      "AppName": "S2KDesignTemplate-SwaggerUI"
+    }
+```
+---
+#### Health Checks
+Nuget: "[S2kDesignTemplate.ApiEtensions](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/packages/1008690)"
+
+HealthChecks for APIs is configured in `startup.cs` file: 
+```c# 
+public void ConfigureServices(IServiceCollection services){
+    services.AddHealthChecksExtensions(Configuration.GetSection("HealthChecksConfiguration"));
+    ...
+}
+```
+```c#
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env){   
+    ...
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapControllers();
+        endpoints.MapHealthChecksExtensions();
+    });
+}
+```
+
+If one project is referencing another, Add configuration to `appsettings.json` to master project ->
+```json
+  "HealthChecksConfiguration": {
+    "UrlGroup": {
+      "0": {
+        "Url": "https://localhost-dependant-project:44363/hc",
+        "Name": "server-api-check",
+        "Tags": [
+          "server-api"
+        ]
+      }
+    }
+  },
+```
