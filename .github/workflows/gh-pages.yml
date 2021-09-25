@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy to GitHub Pages version - 1.0.0.${{ github.run_number }}
 
 # Run workflow on every push to the main branch
 on:

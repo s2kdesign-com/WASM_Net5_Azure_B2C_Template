@@ -1,4 +1,4 @@
-name: Publish Nuget Package - S2kDesignTemplate.ApiExtensions
+name: Publish Nuget Package - S2kDesignTemplate.ApiExtensions.1.0.0.${{ github.run_number }}
 
 # Run workflow on every push to the main branch
 on:
