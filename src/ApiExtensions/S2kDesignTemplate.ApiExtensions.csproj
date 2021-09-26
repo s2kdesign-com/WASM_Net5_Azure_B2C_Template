@@ -12,17 +12,17 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
 
     <Description>
-      ## Defined methods in nuget
-      ---
-      #### Cors Policies
-      Nuget: "[S2kDesignTemplate.ApiEtensions](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/packages/1008690)"
+## Defined methods in nuget
+---
+#### Cors Policies
+Nuget: "[S2kDesignTemplate.ApiEtensions](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/packages/1008690)"
 
-      Cors Policies for APIs are configured in `startup.cs` file :
+Cors Policies for APIs are configured in `startup.cs` file :
 
-      ```c#
-      public void ConfigureServices(IServiceCollection services){
-      ...
-      services.AddCorsExtensions(Configuration.GetSection("CorsPoliciesConfiguration"));
+```c#
+public void ConfigureServices(IServiceCollection services){
+...
+services.AddCorsExtensions(Configuration.GetSection("CorsPoliciesConfiguration"));
 }
 ```
 ```c#
