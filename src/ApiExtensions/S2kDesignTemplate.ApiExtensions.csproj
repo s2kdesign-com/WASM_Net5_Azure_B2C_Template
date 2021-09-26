@@ -10,6 +10,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template</RepositoryUrl>
     <PackageProjectUrl>https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
