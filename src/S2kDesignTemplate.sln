@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		..\.github\workflows\clientapi-docker-build.yml = ..\.github\workflows\clientapi-docker-build.yml
 		..\.github\workflows\gh-pages.yml = ..\.github\workflows\gh-pages.yml
 		..\.github\workflows\nuget-s2kdesigntemplate-extensions.yml = ..\.github\workflows\nuget-s2kdesigntemplate-extensions.yml
+		..\.github\workflows\serverapi-docker-build.yml = ..\.github\workflows\serverapi-docker-build.yml
+		..\.github\workflows\webstatus-docker-build.yml = ..\.github\workflows\webstatus-docker-build.yml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "S2kDesignTemplate.ServerAPI", "ServerAPI\S2kDesignTemplate.ServerAPI.csproj", "{81D1321B-54DB-4329-8F57-C580BCFB6218}"
