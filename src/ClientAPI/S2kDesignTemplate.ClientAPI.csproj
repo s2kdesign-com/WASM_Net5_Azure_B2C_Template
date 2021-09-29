@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>5c4ef3d8-e290-4e30-8c35-022d49989675</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.11.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ApiExtensions\S2kDesignTemplate.ApiExtensions.csproj" />
+    <ProjectReference Include="..\Shared\S2kDesignTemplate.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

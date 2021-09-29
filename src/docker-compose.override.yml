@@ -29,6 +29,19 @@ services:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
 
+  s2kdesigntemplateclientapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - CorsPoliciesConfiguration__CorsPolicies__0__PolicyName=WebStatus
+      - CorsPoliciesConfiguration__CorsPolicies__0__Url=http://s2kdesigntemplatewebstatus
+    ports:
+      - 22770:80
+      - 44362:443
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
   s2kdesigntemplatewebstatus:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -37,6 +50,8 @@ services:
       - HealthChecksUI__HealthChecks__0__Uri=http://s2kdesigntemplateserverapi/hc
       - HealthChecksUI__HealthChecks__1__Name=Server HTTP Check
       - HealthChecksUI__HealthChecks__1__Uri=http://s2kdesigntemplateserver/hc
+      - HealthChecksUI__HealthChecks__2__Name=Client API HTTP Check
+      - HealthChecksUI__HealthChecks__2__Uri=http://s2kdesigntemplateclientapi/hc
     ports:
       - 43124:80
       - 44364:443
