@@ -37,8 +37,8 @@ jobs:
       id: docker_build
       uses: docker/build-push-action@v2
       with:
-        context: ./ 
-        file: ClientAPI/Dockerfile
+        context: src/ 
+        file: src/ClientAPI/Dockerfile
         builder: ${{ steps.buildx.outputs.name }}
         push: true
         tags: ghcr.io/s2kdesign-com/s2kdesigntemplate.clientapi:latest
