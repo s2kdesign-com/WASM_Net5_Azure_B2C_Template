@@ -19,6 +19,7 @@ Right click on `"docker-compose"` and choose `"Set as startup"` then press F5.
 Start the projects in this order with right click `"Set as startup"` :
 ```
 S2kDesignTemplate.WebStatus - https://localhost:5107/
+S2kDesignTemplate.ClientAPI - https://localhost:44362/
 S2kDesignTemplate.ServerAPI - https://localhost:44363/
 S2kDesignTemplate.Server - https://localhost:44314/
 ```
@@ -37,7 +38,7 @@ You should be able to browse different components of the application by using th
 Web Status (HealthCheck Monitoring) : http://host.docker.internal:5107/
 
 Web Client :  http://host.docker.internal:44314/
-Web Client API :  TODO
+Web Client API :  http://host.docker.internal:44362/
 Web Client Gateway :  TODO
 
 Web Server :  http://host.docker.internal:44314/
