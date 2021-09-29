@@ -2,10 +2,22 @@
 
 ## Getting Started
 
-
+#### Projects 
 | Image | Status | 
 | ------------- | ------------- | 
 | Blazor Web Client | [![Deploy to GitHub Pages](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/actions/workflows/gh-pages.yml) |
+
+#### Docker Images
+
+| Image | Tag | Status | 
+| ------------- | ------------- | ------------- | 
+| Client API | [latest](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/pkgs/container/s2kdesigntemplate.clientapi) | [![Push Client API to Github Docker Registry](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/actions/workflows/clientapi-docker-build.yml/badge.svg)](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/actions/workflows/clientapi-docker-build.yml)|
+| Server API | [latest](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/pkgs/container/s2kdesigntemplate.serverapi)  | [![Push Server API to Github Docker Registry](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/actions/workflows/serverapi-docker-build.yml/badge.svg)](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/actions/workflows/serverapi-docker-build.yml) |
+| Web Status (HealthCheckUI) | [latest](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/pkgs/container/s2kdesigntemplate.webstatus)   |[![Push WebStatus (HealthCheckUI) to Github Docker Registry](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/actions/workflows/webstatus-docker-build.yml/badge.svg)](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/actions/workflows/webstatus-docker-build.yml) |
+
+
+#### Packages
+All nuget/npm packages are published to [Github package registry ](https://github.com/orgs/s2kdesign-com/packages)
 
 | Nuget | Status | url| 
 | ------------- | ------------- | ------------- | 
