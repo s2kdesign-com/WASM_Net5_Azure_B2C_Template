@@ -1,4 +1,4 @@
-name: Push Server API to Github Docker Registry
+name: Push Client API HTTP Aggregator to Github Docker Registry
 
 # Run workflow on every push to the main branch
 on:
