@@ -8,6 +8,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.11.1" />
+    <PackageReference Include="Google.Protobuf" Version="3.14.0" />
+    <PackageReference Include="Grpc.AspNetCore.Server" Version="2.34.0" />
+    <PackageReference Include="Grpc.AspNetCore.Web" Version="2.34.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.34.0" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
@@ -15,4 +19,7 @@
     <ProjectReference Include="..\Shared\S2kDesignTemplate.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Protobuf Include="Proto\clientapi.proto" GrpcServices="Server" />
+  </ItemGroup>
 </Project>

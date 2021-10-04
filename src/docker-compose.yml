@@ -19,6 +19,12 @@ services:
       context: .
       dockerfile: ClientAPI/Dockerfile
 
+  s2kdesigntemplateclientapihttpaggregator:
+    image: ${DOCKER_REGISTRY-}s2kdesigntemplate.clientapihttpaggregator:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: ClientAPI.HttpAggregator/Dockerfile
+
   s2kdesigntemplatewebstatus:
     image: ${DOCKER_REGISTRY-}s2kdesigntemplate.webstatus:${PLATFORM:-linux}-${TAG:-latest}
     build:

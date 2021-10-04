@@ -12,6 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "github", "github", "{16AF13
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{BC3F718E-BD9E-4A7A-A05C-2D5B170194AE}"
 	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\clientapi-aggregator-docker-build.yml = ..\.github\workflows\clientapi-aggregator-docker-build.yml
 		..\.github\workflows\clientapi-docker-build.yml = ..\.github\workflows\clientapi-docker-build.yml
 		..\.github\workflows\gh-pages.yml = ..\.github\workflows\gh-pages.yml
 		..\.github\workflows\nuget-s2kdesigntemplate-extensions.yml = ..\.github\workflows\nuget-s2kdesigntemplate-extensions.yml
@@ -34,6 +35,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "S2kDesignTemplate.ApiExtensions", "ApiExtensions\S2kDesignTemplate.ApiExtensions.csproj", "{3393D3F3-9945-4C26-9839-5B0A1A32304D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "S2kDesignTemplate.ClientAPI", "ClientAPI\S2kDesignTemplate.ClientAPI.csproj", "{E04FCF6E-F5A0-4E25-9016-28C66617803A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "S2kDesignTemplate.ClientAPI.HttpAggregator", "ClientAPI.HttpAggregator\S2kDesignTemplate.ClientAPI.HttpAggregator.csproj", "{60698653-C468-4DB6-AECD-8E7E127933CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,6 +144,18 @@ Global
 		{E04FCF6E-F5A0-4E25-9016-28C66617803A}.Release|x64.Build.0 = Release|Any CPU
 		{E04FCF6E-F5A0-4E25-9016-28C66617803A}.Release|x86.ActiveCfg = Release|Any CPU
 		{E04FCF6E-F5A0-4E25-9016-28C66617803A}.Release|x86.Build.0 = Release|Any CPU
+		{60698653-C468-4DB6-AECD-8E7E127933CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60698653-C468-4DB6-AECD-8E7E127933CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60698653-C468-4DB6-AECD-8E7E127933CB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{60698653-C468-4DB6-AECD-8E7E127933CB}.Debug|x64.Build.0 = Debug|Any CPU
+		{60698653-C468-4DB6-AECD-8E7E127933CB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{60698653-C468-4DB6-AECD-8E7E127933CB}.Debug|x86.Build.0 = Debug|Any CPU
+		{60698653-C468-4DB6-AECD-8E7E127933CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60698653-C468-4DB6-AECD-8E7E127933CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60698653-C468-4DB6-AECD-8E7E127933CB}.Release|x64.ActiveCfg = Release|Any CPU
+		{60698653-C468-4DB6-AECD-8E7E127933CB}.Release|x64.Build.0 = Release|Any CPU
+		{60698653-C468-4DB6-AECD-8E7E127933CB}.Release|x86.ActiveCfg = Release|Any CPU
+		{60698653-C468-4DB6-AECD-8E7E127933CB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

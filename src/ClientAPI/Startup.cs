@@ -1,3 +1,4 @@
+using GrpcClientApi;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,7 +25,11 @@ namespace S2kDesignTemplate.ClientAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddGrpc(options =>
+            {
+                options.EnableDetailedErrors = true;
+            });
+            
             services.AddHealthChecksExtensions(Configuration.GetSection(nameof(HealthChecksConfiguration)));
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -36,6 +41,7 @@ namespace S2kDesignTemplate.ClientAPI
 
             // Defined in S2kDesignTemplate.Extensions
             services.AddCorsExtensions(Configuration.GetSection(nameof(CorsPoliciesConfiguration)));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,6 +65,9 @@ namespace S2kDesignTemplate.ClientAPI
 
             app.UseEndpoints(endpoints =>
             {
+                // TODO: Add cors policy support
+                endpoints.MapGrpcService<ClientApiService>() ;
+
                 endpoints.MapControllers();
                 // Defined in S2kDesignTemplate.Extensions
                 endpoints.MapHealthChecksExtensions();

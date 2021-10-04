@@ -4,6 +4,8 @@
       "commandName": "DockerCompose",
       "composeLaunchServiceName": "s2kdesigntemplateserver",
       "serviceActions": {
+        "s2kdesigntemplateclientapi": "StartDebugging",
+        "s2kdesigntemplateclientapihttpaggregator": "StartDebugging",
         "s2kdesigntemplateserverapi": "StartDebugging",
         "s2kdesigntemplateserver": "StartDebugging",
         "s2kdesigntemplatewebstatus": "StartDebugging"

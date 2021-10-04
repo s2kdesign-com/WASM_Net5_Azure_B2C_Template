@@ -1,0 +1,18 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "GrpcClientApi";
+
+package ClientApi;
+
+service ClientApi {
+	rpc GetProfileById(ProfileRequest) returns (ProfileResponse) {}
+}
+
+message ProfileRequest {
+	string id = 1;
+	repeated ProfileResponse items = 2;
+}
+
+message ProfileResponse {
+	string displayname = 1;
+}

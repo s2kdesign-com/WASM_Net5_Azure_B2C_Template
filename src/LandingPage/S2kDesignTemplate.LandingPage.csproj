@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -6,11 +6,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Grpc.Net.Client" Version="2.39.0" />
+    <PackageReference Include="Grpc.Net.Client.Web" Version="2.39.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.9" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" Version="5.0.9" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
     <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.34.0" PrivateAssets="All" />
+    <PackageReference Include="Google.Protobuf" Version="3.14.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,4 +27,7 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <Protobuf Include="..\ClientAPI\Proto\clientapi.proto" GrpcServices="Client" Link="Proto\clientapi.proto" Access="Internal" />
+  </ItemGroup>
 </Project>

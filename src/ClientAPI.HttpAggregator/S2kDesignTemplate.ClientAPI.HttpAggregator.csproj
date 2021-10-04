@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>a21ec70d-d968-4cdc-8036-08d1efc60c88</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.11.1" />
+    <PackageReference Include="Google.Protobuf" Version="3.14.0" />
+    <PackageReference Include="Grpc.AspNetCore.Server.ClientFactory" Version="2.34.0" />
+    <PackageReference Include="Grpc.Core" Version="2.34.0" />
+    <PackageReference Include="Grpc.Net.ClientFactory" Version="2.34.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.34.0" PrivateAssets="All" />
+    <PackageReference Include="Grpc.AspNetCore.Server" Version="2.34.0" />
+    <PackageReference Include="Grpc.AspNetCore.Web" Version="2.34.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ApiExtensions\S2kDesignTemplate.ApiExtensions.csproj" />
+    <ProjectReference Include="..\Shared\S2kDesignTemplate.Shared.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Protobuf Include="..\ClientAPI\Proto\clientapi.proto" GrpcServices="Both" Link="Proto\clientapi.proto" />
+  </ItemGroup>
+</Project>

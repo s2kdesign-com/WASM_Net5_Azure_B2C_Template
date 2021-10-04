@@ -2,12 +2,17 @@
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @using S2kDesignTemplate.Shared
-@attribute [Authorize]
+@using Grpc.Net.Client
+@using System.Net
 @inject HttpClient Http
+@attribute [Authorize]
+@inject GrpcChannel Channel
 
-<h1>Weather forecast</h1>
+<h1>GRPC and Rest Authenticated Calls</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
+<p>This component demonstrates fetching data from <a target="_blank" href="https://localhost:44361/swagger/index.html">ClientAPI HTTP Aggregator</a> using REST and GRPC  (restricted with CORS policy to allow https://localhost:44314/ ) .
+
+    </p>
 
 @if (forecasts == null)
 {
@@ -15,6 +20,14 @@
 }
 else
 {
+    <h3>GRPC API Call</h3>
+    <div>
+        Read User Profile from GRPC Service
+        <br />
+        Display Name: @profile.Displayname
+    </div>
+    <br />
+    <h3>Rest API Call</h3>
     <table class="table">
         <thead>
             <tr>
@@ -40,12 +53,16 @@ else
 
 @code {
     private WeatherForecast[] forecasts;
+    private GrpcClientApi.ProfileResponse profile;
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
             forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("api/WeatherForecast");
+            var client = new GrpcClientApi.ClientApi.ClientApiClient(Channel);
+
+            profile = await client.GetProfileByIdAsync(new GrpcClientApi.ProfileRequest { Id = "2"});
         }
         catch (AccessTokenNotAvailableException exception)
         {

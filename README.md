@@ -12,6 +12,7 @@
 | Image | Tag | Status | 
 | ------------- | ------------- | ------------- | 
 | Client API | [latest](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/pkgs/container/s2kdesigntemplate.clientapi) | [![Push Client API to Github Docker Registry](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/actions/workflows/clientapi-docker-build.yml/badge.svg)](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/actions/workflows/clientapi-docker-build.yml)|
+| Client API HttpAggregator | [latest](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/pkgs/container/s2kdesigntemplate.clientapi.aggregator)  | [![Push Client API Aggregator to Github Docker Registry](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/actions/workflows/clientapi-aggregator-docker-build.yml/badge.svg)](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/actions/workflows/clientapi-aggregator-docker-build.yml) | 
 | Server API | [latest](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/pkgs/container/s2kdesigntemplate.serverapi)  | [![Push Server API to Github Docker Registry](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/actions/workflows/serverapi-docker-build.yml/badge.svg)](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/actions/workflows/serverapi-docker-build.yml) |
 | Web Status (HealthCheckUI) | [latest](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/pkgs/container/s2kdesigntemplate.webstatus)   |[![Push WebStatus (HealthCheckUI) to Github Docker Registry](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/actions/workflows/webstatus-docker-build.yml/badge.svg)](https://github.com/s2kdesign-com/WASM_Net5_Azure_B2C_Template/actions/workflows/webstatus-docker-build.yml) |
 
@@ -31,6 +32,7 @@ Right click on `"docker-compose"` and choose `"Set as startup"` then press F5.
 Start the projects in this order with right click `"Set as startup"` :
 ```
 S2kDesignTemplate.WebStatus - https://localhost:5107/
+S2kDesignTemplate.ClientAPI.Gateway - https://localhost:44361/
 S2kDesignTemplate.ClientAPI - https://localhost:44362/
 S2kDesignTemplate.ServerAPI - https://localhost:44363/
 S2kDesignTemplate.Server - https://localhost:44314/
@@ -68,3 +70,24 @@ Web Files Gateway: TODO
 Start template with preconfigured infrastructure
 ![](docs/img/InfrastructureDiagram.drawio.png) 
 
+### Architecture Overview
+
+#### Http Aggregators
+* Client API Aggregator - Used from Landing Page and Mobile clients
+* Server API Aggregator - Used from Hosted Services and Admin Dashboard
+
+In a microservices architecture, the client apps usually need to consume functionality from more than one microservice. If that consumption is performed directly, the client needs to handle multiple calls to microservice endpoints. What happens when the application evolves and new microservices are introduced or existing microservices are updated? If your application has many microservices, handling so many endpoints from the client apps can be a nightmare. Since the client app would be coupled to those internal endpoints, evolving the microservices in the future can cause high impact for the client apps.
+
+Therefore, having an intermediate level or tier of indirection (Gateway/Aggregator) can be convenient for microservice-based applications. If you don’t have API Gateways, the client apps must send requests directly to the microservices and that raises problems, such as the following issues
+
+> The aggregator shows how a to make nested gRPC calls (a gRPC service calling another gRPC service). The gRPC client factory is used in ASP.NET Core to inject a client into services. The gRPC client factory is configured to propagate the context from the original call to the nested call.
+
+#### gRPC 
+gRPC is a modern, high-performance framework that evolves the age-old remote procedure call (RPC) protocol. At the application level, gRPC streamlines messaging between clients and back-end services.
+
+gRPC uses HTTP/2 for its transport protocol. While compatible with HTTP 1.1, HTTP/2 features many advanced capabilities:
+
+ * A binary framing protocol for data transport - unlike HTTP 1.1, which is text based.
+ * Multiplexing support for sending multiple parallel requests over the same connection - HTTP 1.1 limits processing to one request/response message at a time.
+ * Bidirectional full-duplex communication for sending both client requests and server responses simultaneously.
+ * Built-in streaming enabling requests and responses to asynchronously stream large data sets.
